@@ -74,7 +74,7 @@ with open(filepath,mode="r", encoding="utf-8") as fp:
        l=len(line)
        c=0
        for i in range(0,l):
-           if(line[i]==':'):
+           if(line[i]==':' and numeric(line[i-2])==True and numeric(line[i-1])==True):
                c=c+1
                if(c%2==1):
                    hr1=line[i-2]
@@ -83,12 +83,12 @@ with open(filepath,mode="r", encoding="utf-8") as fp:
                    mn2=line[i+2]
                    sc1=line[i+4]
                    sc2=line[i+5]
-                   if(numeric(hr1)==True and numeric(hr2)==True):
-                       incorrect=hr1+hr2+":"+mn1+mn2+":"+sc1+sc2
-                       #print(hr1+hr2+":"+mn1+mn2+":"+sc1+sc2)
-                       correct=accurate_deducting(hr1,hr2,mn1,mn2,sc1,sc2,8)
-                       new_line=line.replace(incorrect,correct)
-                       line=new_line
+                   #if(numeric(hr1)==True and numeric(hr2)==True):
+				   incorrect=hr1+hr2+":"+mn1+mn2+":"+sc1+sc2
+				   #print(hr1+hr2+":"+mn1+mn2+":"+sc1+sc2)
+				   correct=accurate_deducting(hr1,hr2,mn1,mn2,sc1,sc2,8)
+				   new_line=line.replace(incorrect,correct)
+				   line=new_line
                        
        ff.write(line)
        line = fp.readline()
